@@ -93,6 +93,23 @@
             letter-spacing: 0.5px;
         }
 
+        /* بادج نوع الخبر العائم فوق الصورة */
+        .news-badge-floating {
+            position: absolute;
+            top: 75px;
+            right: 20px;
+            background-color: #dc2626;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 4px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            z-index: 4;
+            display: none; /* مخفي افتراضياً حتى يتم اختياره */
+            letter-spacing: 0.5px;
+        }
+
         /* شريط العنوان السفلي مع الخط الأحمر في الأعلى */
         .bottom-content-area {
             width: 100%;
@@ -115,7 +132,7 @@
             text-align: center;
             padding: 0 4px 4px 4px;
             overflow: hidden;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.6); /* خط أحمر رفيع يفصل نص الخبر عن أيقونات التواصل */
+            border-bottom: 1px solid rgba(220, 38, 38, 0.6);
         }
         .title-text {
             font-size: 13px; 
@@ -204,6 +221,37 @@
             font-size: 13px;
             margin-bottom: 10px;
         }
+        
+        /* تنسيق أزرار أنواع الخبر في لوحة التحكم */
+        .news-types-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+        .news-btn {
+            padding: 8px 4px;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            text-align: center;
+            transition: 0.2s;
+            font-family: 'Cairo', sans-serif;
+        }
+        .news-btn.active {
+            box-shadow: 0 0 0 2px #ffffff;
+            transform: scale(1.05);
+        }
+        .btn-urgent { background-color: #dc2626; }
+        .btn-sport { background-color: #16a34a; }
+        .btn-appeal { background-color: #ea580c; }
+        .btn-art { background-color: #9333ea; }
+        .btn-tech { background-color: #0891b2; }
+        .btn-none { background-color: #475569; font-size: 11px; }
+
         .btn-download {
             background-color: #dc2626;
             color: #ffffff;
@@ -235,6 +283,8 @@
                 </div>
                 <div class="date-badge-top" id="display-date"></div>
             </div>
+            <!-- بادج نوع الخبر يظهر هنا -->
+            <div class="news-badge-floating" id="floating-badge">عاجل</div>
         </div>
         
         <div class="bottom-content-area" id="bottom-bar">
@@ -256,6 +306,16 @@
     </div>
 
     <div class="control-panel">
+        <div class="section-title">نوع الخبر (إظهار / إخفاء البادج)</div>
+        <div class="news-types-grid">
+            <button class="news-btn btn-urgent" onclick="setNewsType('عاجل', '#dc2626', this)">عاجل</button>
+            <button class="news-btn btn-sport" onclick="setNewsType('رياضة', '#16a34a', this)">رياضة</button>
+            <button class="news-btn btn-appeal" onclick="setNewsType('مناشدة', '#ea580c', this)">مناشدة</button>
+            <button class="news-btn btn-art" onclick="setNewsType('ترفيه', '#9333ea', this)">ترفيه</button>
+            <button class="news-btn btn-tech" onclick="setNewsType('تقنية', '#0891b2', this)">تقنية</button>
+        </div>
+        <button class="news-btn btn-none" style="width: 100%; margin-top: 4px;" onclick="hideNewsType(this)">إخفاء التصنيف (بدون)</button>
+
         <div class="section-title">إدراج صورة الخبر أو الكتاب الرسمي</div>
         <input type="file" id="image-loader" class="input-custom" accept="image/*" onchange="loadImage(event)">
 
@@ -309,6 +369,25 @@
             document.getElementById('display-date').innerText = formattedDate;
         }
         window.onload = setTodayDate;
+
+        function setNewsType(text, color, btnElement) {
+            const badge = document.getElementById('floating-badge');
+            badge.innerText = text;
+            badge.style.backgroundColor = color;
+            badge.style.display = 'block';
+
+            // إدارة إبراز الزر النشط
+            document.querySelectorAll('.news-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
+
+        function hideNewsType(btnElement) {
+            const badge = document.getElementById('floating-badge');
+            badge.style.display = 'none';
+
+            document.querySelectorAll('.news-btn').forEach(b => b.classList.remove('active'));
+            btnElement.classList.add('active');
+        }
 
         function loadImage(event) {
             const reader = new FileReader();

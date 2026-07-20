@@ -38,10 +38,10 @@
         }
         .image-area {
             width: 100%;
-            height: 86%; 
+            flex-grow: 1; /* لتتوسع وتتقلص تلقائياً بناءً على حجم الشريط السفلي */
             background-color: #0f172a; 
             background-repeat: no-repeat;
-            background-size: 100% 100%; /* تم التعديل لتعبئة المساحة بالكامل ومنع الفراغات الجانبية للكتب */
+            background-size: 100% 100%; 
             background-position: center;
             position: relative;
             box-sizing: border-box;
@@ -53,42 +53,55 @@
             right: 0;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             padding: 12px 15px;
             z-index: 3;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
+        
+        /* تعديل اسم الإذاعة: سطرين (إذاعة دارك وتحتها 94.3 FM أصغر وأبيض) */
         .radio-main-title {
             color: #ffffff;
             font-size: 14px;
             font-weight: bold;
             background: rgba(30, 27, 75, 0.9);
-            padding: 3px 8px;
+            padding: 5px 10px;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
             margin: 0;
+            text-align: right;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
         }
+        .radio-sub-freq {
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+
         .unified-color {
             color: #dc2626;
         }
-        /* التاريخ في الأعلى على اليسار بشريط ملون واضح */
+        
         .date-badge-top {
             background: rgba(30, 27, 75, 0.9);
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
-            padding: 3px 8px;
+            padding: 5px 10px;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             letter-spacing: 0.5px;
         }
 
-        /* شريط العنوان السفلي شفاف جداً مع عزل بصري خفيف */
+        /* شريط العنوان السفلي القابل للتحكم بالارتفاع */
         .bottom-content-area {
             width: 100%;
-            height: 14%; 
-            background-color: rgba(15, 23, 42, 0.35); 
+            height: 14%; /* القيمة الافتراضية، تتغير عبر السلايدر */
+            background-color: rgba(15, 23, 42, 0.45); 
             backdrop-filter: blur(4px); 
             display: flex;
             flex-direction: column;
@@ -96,7 +109,8 @@
             padding: 4px 8px 3px 8px;
             box-sizing: border-box;
             z-index: 2;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            flex-shrink: 0;
         }
         .text-container {
             display: flex;
@@ -105,6 +119,7 @@
             flex-grow: 1;
             text-align: center;
             padding: 0 4px;
+            overflow: hidden;
         }
         .title-text {
             font-size: 13px; 
@@ -225,12 +240,16 @@
     <div class="preview-container" id="capture-area">
         <div class="image-area" id="bg-image-layer">
             <div class="top-overlay">
-                <div class="radio-main-title">إذاعة دارك <span class="unified-color">94.3 FM</span></div>
+                <!-- اسم الإذاعة سطرين وتردد أصغر أبيض -->
+                <div class="radio-main-title">
+                    إذاعة دارك
+                    <span class="radio-sub-freq">94.3 FM</span>
+                </div>
                 <div class="date-badge-top" id="display-date"></div>
             </div>
         </div>
         
-        <div class="bottom-content-area">
+        <div class="bottom-content-area" id="bottom-bar">
             <div class="text-container">
                 <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر بوضوح وبشكل متناسق ومريح للعين...</p>
             </div>
@@ -256,6 +275,12 @@
             <option value="cover">ملء مع الحفاظ على الأبعاد (Cover)</option>
             <option value="contain">إظهار الصورة كاملة (Contain)</option>
         </select>
+
+        <div class="section-title">ارتفاع شريط العنوان السفلي</div>
+        <div class="slider-container">
+            <input type="range" id="bar-height-slider" min="10" max="35" value="14" oninput="changeBarHeight()">
+            <span id="bar-height-val" class="slider-val">14%</span>
+        </div>
 
         <div class="section-title">اختيار نوع خط العناوين</div>
         <select id="font-family-select" class="select-custom" onchange="changeFontFamily()">
@@ -308,6 +333,12 @@
             document.getElementById('bg-image-layer').style.backgroundSize = fitValue;
             document.getElementById('image-size-slider').value = 100;
             document.getElementById('image-size-val').innerText = '100%';
+        }
+
+        function changeBarHeight() {
+            const val = document.getElementById('bar-height-slider').value;
+            document.getElementById('bottom-bar').style.height = val + '%';
+            document.getElementById('bar-height-val').innerText = val + '%';
         }
 
         function changeImageSize() {

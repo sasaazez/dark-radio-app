@@ -54,14 +54,12 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            /* زيادة المسافة لإنزال التاريخ ومجموعة الإذاعة أكثر نحو الأسفل */
             padding: 22px 16px;
             z-index: 3;
             background: linear-gradient(rgba(0,0,0,0.5), transparent);
         }
         .logo-container {
             position: absolute;
-            /* إنزال الشعار للاسفل قليلاً لتناسب الموضع الجديد */
             top: 22px;
             right: 16px;
             z-index: 4;
@@ -98,7 +96,7 @@
 
         /* خلفية نيلي لاسم الإذاعة مع خط أبيض */
         .radio-badge {
-            background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
@@ -109,11 +107,11 @@
             letter-spacing: 0.5px;
         }
 
-        /* خلفية العنوان الرئيسي السفلية باللون النيلي المتناسق */
+        /* خلفية العنوان الرئيسي السفلية باللون النيلي الداكن جداً */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
-            background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
+            background: linear-gradient(135deg, #090d16 0%, #171c30 100%);
             border-top: 2.5px solid #38bdf8; 
             display: flex;
             flex-direction: column;
@@ -140,7 +138,7 @@
             font-family: 'Cairo', sans-serif;
         }
         .social-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             padding-top: 3px;
             display: flex;
             justify-content: space-between;
@@ -255,7 +253,7 @@
         
         <div class="bottom-content-area">
             <div class="text-container">
-                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج الأزرق...</p>
+                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج النيلي الداكن...</p>
             </div>
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
@@ -343,7 +341,7 @@
             const fitValue = document.getElementById('image-fit-select').value;
             document.getElementById('bg-image-layer').style.backgroundSize = fitValue;
             document.getElementById('image-size-slider').value = 100;
-            document.getElementById('image-size-val').innerText = '100%<strong>';
+            document.getElementById('image-size-val').innerText = '100%';
         }
 
         function changeImageSize() {
@@ -358,7 +356,7 @@
 
         function updateTitle() {
             const text = document.getElementById('input-title').value;
-            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج الأزرق...";
+            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج النيلي الداكن...";
         }
 
         function changeFontSize() {

@@ -83,39 +83,39 @@
             color: #ff5500;
         }
 
-        /* التاريخ في جهة اليسار مستوحى من لون الشعار */
+        /* التاريخ في جهة اليسار بلون صريح دون تدرج */
         .date-text {
-            background: linear-gradient(135deg, #1f0b00 0%, #421600 100%);
+            background-color: #ff5500;
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
             padding: 3px 8px;
             border-radius: 4px;
-            border: 1px solid rgba(255, 85, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
             letter-spacing: 0.5px;
             z-index: 4;
         }
 
-        /* بادج اسم الإذاعة بحجم أنيق بلون الشعار بدقة */
+        /* بادج اسم الإذاعة بلون صريح دون تدرج */
         .radio-badge {
-            background: linear-gradient(135deg, #2b0f00 0%, #5c2000 100%);
+            background-color: #ff5500;
             color: #ffffff;
             font-size: 10px;
             font-weight: bold;
             padding: 3px 8px;
             border-radius: 4px;
-            border: 1px solid rgba(255, 85, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
             letter-spacing: 0.3px;
         }
 
-        /* خلفية العنوان الرئيسي السفلية متناسقة مع لون الشعار */
+        /* خلفية العنوان الرئيسي السفلية بلون صريح دون تدرج */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
-            background: linear-gradient(135deg, #1f0b00 0%, #421600 100%);
-            border-top: 2.5px solid #ff5500; 
+            background-color: #ff5500;
+            border-top: 2.5px solid #ffffff; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -141,7 +141,7 @@
             font-family: 'Cairo', sans-serif;
         }
         .social-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             padding-top: 3px;
             display: flex;
             justify-content: space-between;
@@ -255,7 +255,7 @@
         
         <div class="bottom-content-area">
             <div class="text-container">
-                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج المستوحى من الشعار...</p>
+                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط اللون الصريح...</p>
             </div>
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
@@ -339,7 +339,7 @@
 
         function updateTitle() {
             const text = document.getElementById('input-title').value;
-            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط التدرج المستوحى من الشعار...";
+            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط اللون الصريح...";
         }
 
         function changeFontSize() {

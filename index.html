@@ -58,13 +58,16 @@
             z-index: 3;
             background: linear-gradient(rgba(0,0,0,0.5), transparent);
         }
-        .logo-container {
-            position: absolute;
-            top: 22px;
-            right: 16px;
+
+        /* مجموعة اليمين: الشعار واسم الإذاعة تحت بعضهما */
+        .right-header-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
             z-index: 4;
-            transition: all 0.3s ease;
         }
+
         .logo-img {
             width: 38px;
             height: 38px;
@@ -76,42 +79,35 @@
             display: block;
         }
         
-        .left-header-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 5px;
-            margin-right: auto;
-        }
-
         .unified-color {
             color: #38bdf8;
         }
 
-        /* لون خلفية وتنسيق التاريخ بنفس نمط شريط العنوان النيلي الداكن */
+        /* التاريخ في جهة اليسار بلون نيلي متناسق */
         .date-text {
             background: linear-gradient(135deg, #090d16 0%, #171c30 100%);
             color: #ffffff;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             padding: 3px 8px;
             border-radius: 4px;
             border: 1px solid rgba(56, 189, 248, 0.4);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
             letter-spacing: 0.5px;
+            z-index: 4;
         }
 
-        /* خلفية نيلي لاسم الإذاعة مع خط أبيض */
+        /* بادج اسم الإذاعة بحجم أصغر وأنيق في جهة اليمين */
         .radio-badge {
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
             color: #ffffff;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: bold;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
             border: 1px solid rgba(56, 189, 248, 0.4);
             box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
 
         /* خلفية العنوان الرئيسي السفلية باللون النيلي الداكن جداً */
@@ -247,14 +243,13 @@
 
     <div class="preview-container" id="capture-area">
         <div class="image-area" id="bg-image-layer">
-            <div class="logo-container" id="logo-box">
-                <img src="logo.jpg" alt="شعار إذاعة دارك 94.3 FM" class="logo-img" onerror="this.style.display='none';">
-            </div>
+            <!-- الهيدر العلوي: الشعار والإذاعة باليمين، والتاريخ باليسار -->
             <div class="top-overlay">
-                <div class="left-header-group">
-                    <div class="date-text" id="display-date"></div>
+                <div class="right-header-group">
+                    <img src="logo.jpg" alt="شعار إذاعة دارك 94.3 FM" class="logo-img" onerror="this.style.display='none';">
                     <div class="radio-badge">إذاعة دارك 94.3 FM</div>
                 </div>
+                <div class="date-text" id="display-date"></div>
             </div>
         </div>
         
@@ -277,13 +272,6 @@
     <div class="control-panel">
         <div class="section-title">إدراج صورة الخبر أو الكتاب الرسمي</div>
         <input type="file" id="image-loader" class="input-custom" accept="image/*" onchange="loadImage(event)">
-
-        <div class="section-title">موقع الشعار على التصميم</div>
-        <select id="logo-position-select" class="select-custom" onchange="changeLogoPosition()">
-            <option value="top-right">أعلى اليمين (الافتراضي)</option>
-            <option value="center">منتصف الصفحة (في الوسط تماماً)</option>
-            <option value="top-left">أعلى اليسار</option>
-        </select>
 
         <div class="section-title">طريقة احتواء الصورة داخل الإطار</div>
         <select id="image-fit-select" class="select-custom" onchange="changeImageFit()">
@@ -330,18 +318,6 @@
                 document.getElementById('bg-image-layer').style.backgroundImage = `url(${reader.result})`;
             }
             reader.readAsDataURL(event.target.files[0]);
-        }
-
-        function changeLogoPosition() {
-            const pos = document.getElementById('logo-position-select').value;
-            const logoBox = document.getElementById('logo-box');
-            if (pos === 'top-right') {
-                logoBox.style.top = '22px'; logoBox.style.right = '16px'; logoBox.style.left = 'auto'; logoBox.style.transform = 'none';
-            } else if (pos === 'center') {
-                logoBox.style.top = '50%'; logoBox.style.right = '50%'; logoBox.style.left = 'auto'; logoBox.style.transform = 'translate(50%, -50%)';
-            } else if (pos === 'top-left') {
-                logoBox.style.top = '22px'; logoBox.style.left = '16px'; logoBox.style.right = 'auto'; logoBox.style.transform = 'none';
-            }
         }
 
         function changeImageFit() {

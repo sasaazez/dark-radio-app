@@ -151,16 +151,19 @@
             font-weight: 500;
             padding-left: 5px;
             padding-right: 5px;
+            direction: rtl; /* ضمان الاتجاه الصحيح من اليمين لليسار */
         }
         .social-icons-group {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
+            direction: ltr; /* لترتيب الحسابات والأسماء بشكل صحيح متناسق */
         }
         .social-item {
             display: flex;
             align-items: center;
             gap: 3px;
+            direction: rtl;
         }
         .follow-text {
             font-weight: bold;
@@ -260,10 +263,10 @@
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
                 <div class="social-icons-group">
-                    <div class="social-item"><i class="fab fa-facebook"></i> إذاعة دارك</div>
-                    <div class="social-item"><i class="fab fa-tiktok"></i> dark_radio</div>
-                    <div class="social-item"><i class="fab fa-instagram"></i> dark.radio</div>
                     <div class="social-item"><i class="fab fa-youtube"></i> إذاعة دارك</div>
+                    <div class="social-item"><i class="fab fa-instagram"></i> dark.radio</div>
+                    <div class="social-item"><i class="fab fa-tiktok"></i> dark_radio</div>
+                    <div class="social-item"><i class="fab fa-facebook"></i> إذاعة دارك</div>
                 </div>
             </div>
         </div>

@@ -20,7 +20,7 @@
         }
         h2 {
             margin-bottom: 20px;
-            color: #ff5500;
+            color: #f97316;
             font-size: 20px;
             text-align: center;
         }
@@ -80,12 +80,12 @@
         }
         
         .unified-color {
-            color: #ff5500;
+            color: #f97316;
         }
 
-        /* التاريخ في جهة اليسار بلون صريح دون تدرج */
+        /* التاريخ في جهة اليسار بلون برتقالي هادئ */
         .date-text {
-            background-color: #ff5500;
+            background-color: #f97316;
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
@@ -97,9 +97,9 @@
             z-index: 4;
         }
 
-        /* بادج اسم الإذاعة بلون صريح دون تدرج */
+        /* بادج اسم الإذاعة بلون برتقالي هادئ */
         .radio-badge {
-            background-color: #ff5500;
+            background-color: #f97316;
             color: #ffffff;
             font-size: 10px;
             font-weight: bold;
@@ -110,12 +110,12 @@
             letter-spacing: 0.3px;
         }
 
-        /* خلفية العنوان الرئيسي السفلية بلون صريح دون تدرج */
+        /* خلفية العنوان الرئيسي السفلية بلون أسود فخم ومريح للعين مع خط علوي برتقالي رفيع */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
-            background-color: #ff5500;
-            border-top: 2.5px solid #ffffff; 
+            background-color: #111827;
+            border-top: 2.5px solid #f97316; 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -141,13 +141,13 @@
             font-family: 'Cairo', sans-serif;
         }
         .social-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
             padding-top: 3px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 9px;
-            color: #ffffff;
+            color: #d1d5db;
             font-weight: 500;
             padding-left: 5px;
             padding-right: 5px;
@@ -164,7 +164,7 @@
         }
         .follow-text {
             font-weight: bold;
-            color: #ffffff;
+            color: #f97316;
             font-size: 10px;
         }
         .fa-facebook { color: #1877F2; } 
@@ -223,7 +223,7 @@
             margin-bottom: 10px;
         }
         .btn-download {
-            background-color: #ff5500; 
+            background-color: #f97316; 
             color: #ffffff;
             width: 100%;
             font-size: 14px;
@@ -255,7 +255,7 @@
         
         <div class="bottom-content-area">
             <div class="text-container">
-                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط اللون الصريح...</p>
+                <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر بوضوح وبشكل مريح للعين...</p>
             </div>
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
@@ -339,7 +339,7 @@
 
         function updateTitle() {
             const text = document.getElementById('input-title').value;
-            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر متناسقاً داخل شريط اللون الصريح...";
+            document.getElementById('display-title').innerText = text.trim() ? text : "أدخل عنوان الخبر الإخباري هنا ليظهر بوضوح وبشكل مريح للعين...";
         }
 
         function changeFontSize() {

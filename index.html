@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصمم قوالب إذاعة دارك 94.3 FM</title>
+    <title>مصمم قوالب إذاعة دارك 94.3 FM (تعديل)</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700&family=Changa:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         }
         h2 {
             margin-bottom: 20px;
-            color: #f97316;
+            color: #dc2626; /* تم تغيير اللون للأحمر */
             font-size: 20px;
             text-align: center;
         }
@@ -52,63 +52,33 @@
             left: 0;
             right: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 22px 16px;
+            justify-content: space-between; /* العناصر على الأطراف */
+            align-items: center; /* توسيط عمودي */
+            padding: 15px 20px;
             z-index: 3;
-            background: linear-gradient(rgba(0,0,0,0.5), transparent);
+            /* تعديل: خلفية شبه شفافة (أسود مع شفافية 0.8) */
+            background: rgba(0, 0, 0, 0.8); 
+            backdrop-filter: blur(5px); /* تأثير ضبابي للخلفية */
         }
 
-        /* مجموعة اليمين: الشعار واسم الإذاعة تحت بعضهما */
-        .right-header-group {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 6px;
-            z-index: 4;
+        /* تم إلغاء الكود الخاص بـ right-header-group و logo-img */
+
+        /* تعديل: اسم الإذاعة أصبح الآن في مكان اللوكو بحجم أكبر وبدون خلفية */
+        .radio-main-title {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            margin: 0;
         }
 
-        .logo-img {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 1.5px solid #ffffff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
-            background-color: #ffffff;
-            display: block;
-        }
-        
+        /* بادج التاريخ العلوي تم إلغاؤه */
+
         .unified-color {
-            color: #f97316;
+            color: #dc2626; /* تم تغيير اللون للأحمر */
         }
 
-        /* التاريخ في جهة اليسار بلون نيلي وبدون إطار */
-        .date-text {
-            background-color: #1e1b4b;
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-            letter-spacing: 0.5px;
-            z-index: 4;
-        }
-
-        /* بادج اسم الإذاعة بلون نيلي وبدون إطار */
-        .radio-badge {
-            background-color: #1e1b4b;
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: bold;
-            padding: 3px 8px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-            letter-spacing: 0.3px;
-        }
-
-        /* خلفية العنوان الرئيسي السفلية بلون نيلي فخم بدون خط علوي برتقالي */
+        /* خلفية العنوان الرئيسي السفلية بلون نيلي غامق */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
@@ -150,6 +120,14 @@
             padding-right: 5px;
             direction: rtl;
         }
+        
+        /* تعديل: مجموعة الأيقونات والتاريخ */
+        .icons-date-group {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* المسافة بين الأيقونات والتاريخ */
+        }
+
         .social-icons-group {
             display: flex;
             gap: 10px;
@@ -164,13 +142,22 @@
         }
         .follow-text {
             font-weight: bold;
-            color: #f97316;
+            color: #dc2626; /* تم تغيير اللون للأحمر */
             font-size: 10px;
         }
-        .fa-facebook { color: #1877F2; } 
-        .fa-tiktok { color: #ffffff; } 
-        .fa-instagram { color: #E4405F; } 
-        .fa-youtube { color: #FF0000; } 
+        
+        /* تعديل: التاريخ أصبح في الأسفل وبنفس ستايل الفوتر */
+        .date-text-footer {
+            color: #d1d5db;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        /* ألوان الأيقونات الجديدة (أحمر) */
+        .fa-facebook { color: #dc2626; } 
+        .fa-tiktok { color: #dc2626; } 
+        .fa-instagram { color: #dc2626; } 
+        .fa-youtube { color: #dc2626; } 
         
         .control-panel {
             width: 420px;
@@ -223,7 +210,7 @@
             margin-bottom: 10px;
         }
         .btn-download {
-            background-color: #f97316; 
+            background-color: #dc2626; /* تم تغيير اللون للأحمر */
             color: #ffffff;
             width: 100%;
             font-size: 14px;
@@ -235,6 +222,9 @@
             transition: 0.2s;
             margin-top: 10px;
         }
+        .btn-download:hover {
+            background-color: #b91c1c;
+        }
     </style>
 </head>
 <body>
@@ -243,13 +233,11 @@
 
     <div class="preview-container" id="capture-area">
         <div class="image-area" id="bg-image-layer">
-            <!-- الهيدر العلوي: الشعار والإذاعة باليمين، والتاريخ باليسار -->
+            <!-- الهيدر العلوي المعدل -->
             <div class="top-overlay">
-                <div class="right-header-group">
-                    <img src="logo.jpg" alt="شعار إذاعة دارك 94.3 FM" class="logo-img" onerror="this.style.display='none';">
-                    <div class="radio-badge">إذاعة دارك 94.3 FM</div>
-                </div>
-                <div class="date-text" id="display-date"></div>
+                <!-- تم نقل اسم الإذاعة هنا، وإلغاء اللوكو والبادج القديم -->
+                <div class="radio-main-title">إذاعة دارك <span class="unified-color">94.3 FM</span></div>
+                <!-- التاريخ تم حذفه من هنا -->
             </div>
         </div>
         
@@ -259,11 +247,17 @@
             </div>
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
-                <div class="social-icons-group">
-                    <div class="social-item"><i class="fab fa-youtube"></i> إذاعة دارك</div>
-                    <div class="social-item"><i class="fab fa-instagram"></i> dark.radio</div>
-                    <div class="social-item"><i class="fab fa-tiktok"></i> dark_radio</div>
-                    <div class="social-item"><i class="fab fa-facebook"></i> إذاعة دارك</div>
+                
+                <!-- تم تجميع الأيقونات والتاريخ في حاوية واحدة -->
+                <div class="icons-date-group">
+                    <div class="social-icons-group">
+                        <div class="social-item"><i class="fab fa-youtube"></i> إذاعة دارك</div>
+                        <div class="social-item"><i class="fab fa-instagram"></i> dark.radio</div>
+                        <div class="social-item"><i class="fab fa-tiktok"></i> dark_radio</div>
+                        <div class="social-item"><i class="fab fa-facebook"></i> إذاعة دارك</div>
+                    </div>
+                    <!-- التاريخ الجديد هنا -->
+                    <div class="date-text-footer" id="display-date"></div>
                 </div>
             </div>
         </div>
@@ -306,9 +300,15 @@
     </div>
 
     <script>
+        // دالة جلب التاريخ وتنسيقه (يوم-شهر-سنة)
         function setTodayDate() {
             const today = new Date();
-            document.getElementById('display-date').innerText = `${today.getDate()}-${today.getMonth() + 1}-${today.getFullYear()}`;
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+            const year = today.getFullYear();
+            
+            const formattedDate = `${day}-${month}-${year}`;
+            document.getElementById('display-date').innerText = formattedDate;
         }
         window.onload = setTodayDate;
 
@@ -349,13 +349,5 @@
         }
 
         function downloadImage() {
-            html2canvas(document.getElementById('capture-area'), { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `dark_radio_${Date.now()}.png`;
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            });
-        }
-    </script>
-</body>
-</html>
+            // إعدادات التحميل (إزالة الخلفية البيضاء من الكانفاس)
+            html2canvas(document.getElementById('capture-area'), {

@@ -106,15 +106,15 @@
             border-radius: 6px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.4);
             z-index: 4;
-            display: none; /* مخفي افتراضياً حتى يتم اختياره */
+            display: none;
             letter-spacing: 0.5px;
         }
 
-        /* شريط العنوان السفلي مع الخط الأحمر في الأعلى */
+        /* شريط العنوان السفلي بنفس لون شريط الإذاعة والتاريخ */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
-            background-color: rgba(0, 0, 0, 0.9); 
+            background-color: rgba(30, 27, 75, 0.9); 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -123,6 +123,7 @@
             z-index: 2;
             border-top: 2px solid #dc2626; 
             flex-shrink: 0;
+            box-shadow: 0 -2px 6px rgba(0,0,0,0.3);
         }
         .text-container {
             display: flex;
@@ -376,7 +377,6 @@
             badge.style.backgroundColor = color;
             badge.style.display = 'block';
 
-            // إدارة إبراز الزر النشط
             document.querySelectorAll('.news-btn').forEach(b => b.classList.remove('active'));
             btnElement.classList.add('active');
         }
@@ -401,7 +401,7 @@
             const fitValue = document.getElementById('image-fit-select').value;
             document.getElementById('bg-image-layer').style.backgroundSize = fitValue;
             document.getElementById('image-size-slider').value = 100;
-            document.getElementById('image-size-val').innerText = '100%';
+            document.getElementById('image-size-val').innerText = '100%_';
         }
 
         function changeBarHeight() {

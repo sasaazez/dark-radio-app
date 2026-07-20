@@ -60,7 +60,7 @@
         }
         .logo-container {
             position: absolute;
-            top: 10px;
+            top: 12px;
             right: 12px;
             z-index: 4;
             transition: all 0.3s ease;
@@ -230,7 +230,7 @@
         <input type="file" id="image-loader" class="input-custom" accept="image/*" onchange="loadImage(event)">
 
         <div class="section-title">موقع الشعار على التصميم</div>
-        <select id="logo-position-select" class="select-custom" onchange="changeLogoPosition()">
+        <select id="logo-position-select" class="select-custom" onchange="changelogoPosition()">
             <option value="top-right">أعلى اليمين (الافتراضي)</option>
             <option value="center">منتصف الصفحة (في الوسط تماماً)</option>
             <option value="top-left">أعلى اليسار (بجانب التاريخ)</option>
@@ -283,7 +283,7 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        function changeLogoPosition() {
+        function changelogoPosition() {
             const pos = document.getElementById('logo-position-select').value;
             const logoBox = document.getElementById('logo-box');
             if (pos === 'top-right') {

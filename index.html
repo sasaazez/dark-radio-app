@@ -27,7 +27,7 @@
         .preview-container {
             width: 420px;
             height: 580px;
-            background-color: #0f172a; /* تم تغيير الخلفية لتناسب الكتب الرسمية عند احتوائها */
+            background-color: #0f172a;
             border-radius: 4px;
             position: relative;
             box-shadow: 0 12px 35px rgba(0,0,0,0.6);
@@ -41,7 +41,7 @@
             height: 86%; 
             background-color: #0f172a; 
             background-repeat: no-repeat;
-            background-size: contain; /* تعديل ليظهر الكتاب والصورة بشكل كامل افتراضياً */
+            background-size: 100% 100%; /* تم التعديل لتعبئة المساحة بالكامل ومنع الفراغات الجانبية للكتب */
             background-position: center;
             position: relative;
             box-sizing: border-box;
@@ -54,16 +54,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
+            padding: 12px 15px;
             z-index: 3;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
         .radio-main-title {
             color: #ffffff;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            background: rgba(30, 27, 75, 0.85); /* شريط بلون هوية الإذاعة */
-            padding: 4px 10px;
+            background: rgba(30, 27, 75, 0.9);
+            padding: 3px 8px;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             text-shadow: 0 1px 2px rgba(0,0,0,0.5);
@@ -72,28 +72,28 @@
         .unified-color {
             color: #dc2626;
         }
-        /* التاريخ في الأعلى ع اليسار وبنفس لون شريط الإذاعة */
+        /* التاريخ في الأعلى على اليسار بشريط ملون واضح */
         .date-badge-top {
-            background: rgba(30, 27, 75, 0.85);
+            background: rgba(30, 27, 75, 0.9);
             color: #ffffff;
             font-size: 11px;
             font-weight: bold;
-            padding: 4px 10px;
+            padding: 3px 8px;
             border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             letter-spacing: 0.5px;
         }
 
-        /* شريط العنوان السفلي شفاف جداً */
+        /* شريط العنوان السفلي شفاف جداً مع عزل بصري خفيف */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
-            background-color: rgba(15, 23, 42, 0.45); /* شفاف جداً */
-            backdrop-filter: blur(6px); /* تأثير ضبابي خفيف لتحسين قراءة النص فوق الصورة */
+            background-color: rgba(15, 23, 42, 0.35); 
+            backdrop-filter: blur(4px); 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 5px 8px 4px 8px;
+            padding: 4px 8px 3px 8px;
             box-sizing: border-box;
             z-index: 2;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -117,7 +117,7 @@
         }
         .social-footer {
             border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 3px;
+            padding-top: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -149,7 +149,6 @@
         .fa-tiktok { color: #dc2626; } 
         .fa-instagram { color: #dc2626; } 
         .fa-youtube { color: #dc2626; } 
-        .fa-telegram { color: #dc2626; } 
         
         .control-panel {
             width: 420px;
@@ -225,7 +224,6 @@
 
     <div class="preview-container" id="capture-area">
         <div class="image-area" id="bg-image-layer">
-            <!-- الهيدر العلوي: اسم الإذاعة يمين، والتاريخ يسار بشريط بنفس اللون -->
             <div class="top-overlay">
                 <div class="radio-main-title">إذاعة دارك <span class="unified-color">94.3 FM</span></div>
                 <div class="date-badge-top" id="display-date"></div>
@@ -254,9 +252,9 @@
 
         <div class="section-title">طريقة احتواء الصورة داخل الإطار</div>
         <select id="image-fit-select" class="select-custom" onchange="changeImageFit()">
-            <!-- جعلنا الخيار الافتراضي contain ليظهر الكتاب كاملاً دون اقتصاص -->
-            <option value="contain" selected>إظهار الصورة أو الكتاب كاملاً بوضوح (Contain)</option>
-            <option value="cover">ملء الإطار بالكامل (Cover)</option>
+            <option value="100% 100%" selected>تعبئة الإطار بالكامل (مناسب للكتب الرسمية)</option>
+            <option value="cover">ملء مع الحفاظ على الأبعاد (Cover)</option>
+            <option value="contain">إظهار الصورة كاملة (Contain)</option>
         </select>
 
         <div class="section-title">اختيار نوع خط العناوين</div>

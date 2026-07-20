@@ -38,7 +38,7 @@
         }
         .image-area {
             width: 100%;
-            flex-grow: 1; /* لتتوسع وتتقلص تلقائياً بناءً على حجم الشريط السفلي */
+            flex-grow: 1; 
             background-color: #0f172a; 
             background-repeat: no-repeat;
             background-size: 100% 100%; 
@@ -58,8 +58,6 @@
             z-index: 3;
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
-        
-        /* تعديل اسم الإذاعة: سطرين (إذاعة دارك وتحتها 94.3 FM أصغر وأبيض) */
         .radio-main-title {
             color: #ffffff;
             font-size: 14px;
@@ -81,11 +79,9 @@
             font-weight: normal;
             opacity: 0.9;
         }
-
         .unified-color {
             color: #dc2626;
         }
-        
         .date-badge-top {
             background: rgba(30, 27, 75, 0.9);
             color: #ffffff;
@@ -97,19 +93,18 @@
             letter-spacing: 0.5px;
         }
 
-        /* شريط العنوان السفلي القابل للتحكم بالارتفاع */
+        /* شريط العنوان السفلي مع الخط الأحمر الفاصل */
         .bottom-content-area {
             width: 100%;
-            height: 14%; /* القيمة الافتراضية، تتغير عبر السلايدر */
-            background-color: rgba(15, 23, 42, 0.45); 
-            backdrop-filter: blur(4px); 
+            height: 14%; 
+            background-color: rgba(0, 0, 0, 0.9); 
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 4px 8px 3px 8px;
+            padding: 6px 10px 6px 10px;
             box-sizing: border-box;
             z-index: 2;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 2px solid #dc2626; /* الخط الأحمر الفاصل مثل الصورة المطلوب مطابقتها */
             flex-shrink: 0;
         }
         .text-container {
@@ -131,39 +126,31 @@
             font-family: 'Cairo', sans-serif;
         }
         .social-footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 9px;
-            color: #d1d5db;
-            font-weight: 500;
+            font-size: 11px;
+            color: #ffffff;
+            font-weight: bold;
             padding-left: 5px;
             padding-right: 5px;
             direction: rtl;
         }
         .social-icons-group {
             display: flex;
-            gap: 8px;
+            gap: 12px;
             align-items: center;
             direction: ltr;
         }
-        .social-item {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            direction: rtl;
+        .social-icons-group i {
+            color: #ffffff;
+            font-size: 13px;
         }
         .follow-text {
             font-weight: bold;
-            color: #dc2626;
-            font-size: 10px;
+            color: #ffffff;
+            font-size: 11px;
         }
-        .fa-facebook { color: #dc2626; } 
-        .fa-tiktok { color: #dc2626; } 
-        .fa-instagram { color: #dc2626; } 
-        .fa-youtube { color: #dc2626; } 
         
         .control-panel {
             width: 420px;
@@ -240,7 +227,6 @@
     <div class="preview-container" id="capture-area">
         <div class="image-area" id="bg-image-layer">
             <div class="top-overlay">
-                <!-- اسم الإذاعة سطرين وتردد أصغر أبيض -->
                 <div class="radio-main-title">
                     إذاعة دارك
                     <span class="radio-sub-freq">94.3 FM</span>
@@ -253,13 +239,16 @@
             <div class="text-container">
                 <p class="title-text" id="display-title">أدخل عنوان الخبر الإخباري هنا ليظهر بوضوح وبشكل متناسق ومريح للعين...</p>
             </div>
+            <!-- الشريط السفلي المطابق تماماً للصورة المطلوبة -->
             <div class="social-footer">
                 <span class="follow-text">تابع إذاعة دارك</span>
                 <div class="social-icons-group">
-                    <div class="social-item"><i class="fab fa-youtube"></i> إذاعة دارك</div>
-                    <div class="social-item"><i class="fab fa-instagram"></i> dark.radio</div>
-                    <div class="social-item"><i class="fab fa-tiktok"></i> dark_radio</div>
-                    <div class="social-item"><i class="fab fa-facebook"></i> إذاعة دارك</div>
+                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-telegram"></i>
+                    <i class="fa-solid fa-x-twitter"></i>
+                    <i class="fab fa-tiktok"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-facebook"></i>
                 </div>
             </div>
         </div>

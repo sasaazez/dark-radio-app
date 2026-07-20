@@ -53,15 +53,15 @@
             right: 0;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            padding: 10px 12px;
+            align-items: flex-start;
+            padding: 15px 16px;
             z-index: 3;
-            background: linear-gradient(rgba(0,0,0,0.4), transparent);
+            background: linear-gradient(rgba(0,0,0,0.5), transparent);
         }
         .logo-container {
             position: absolute;
-            top: 10px;
-            right: 12px;
+            top: 15px;
+            right: 16px;
             z-index: 4;
             transition: all 0.3s ease;
         }
@@ -75,16 +75,38 @@
             background-color: #ffffff;
             display: block;
         }
-        /* توحيد لون التاريخ واسم الإذاعة */
+        
+        .left-header-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 4px;
+            margin-right: auto;
+        }
+
         .unified-color {
             color: #38bdf8;
         }
+
         .date-text {
             font-size: 13px;
             font-weight: bold;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.9);
-            margin-right: auto;
         }
+
+        .radio-badge {
+            background: linear-gradient(135deg, #1e40af 0%, #0369a1 100%);
+            color: #38bdf8;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.4);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            letter-spacing: 0.5px;
+        }
+
+        /* خلفية العنوان الرئيسي السفلية باللون النيلي المتناسق */
         .bottom-content-area {
             width: 100%;
             height: 14%; 
@@ -208,7 +230,10 @@
                 <img src="logo.jpg" alt="شعار إذاعة دارك 94.3 FM" class="logo-img" onerror="this.style.display='none';">
             </div>
             <div class="top-overlay">
-                <div class="date-text unified-color" id="display-date"></div>
+                <div class="left-header-group">
+                    <div class="date-text unified-color" id="display-date"></div>
+                    <div class="radio-badge">إذاعة دارك 94.3 FM</div>
+                </div>
             </div>
         </div>
         
@@ -233,7 +258,7 @@
         <select id="logo-position-select" class="select-custom" onchange="changeLogoPosition()">
             <option value="top-right">أعلى اليمين (الافتراضي)</option>
             <option value="center">منتصف الصفحة (في الوسط تماماً)</option>
-            <option value="top-left">أعلى اليسار (بجانب التاريخ)</option>
+            <option value="top-left">أعلى اليسار</option>
         </select>
 
         <div class="section-title">طريقة احتواء الصورة داخل الإطار</div>
@@ -287,11 +312,11 @@
             const pos = document.getElementById('logo-position-select').value;
             const logoBox = document.getElementById('logo-box');
             if (pos === 'top-right') {
-                logoBox.style.top = '10px'; logoBox.style.right = '12px'; logoBox.style.left = 'auto'; logoBox.style.transform = 'none';
+                logoBox.style.top = '15px'; logoBox.style.right = '16px'; logoBox.style.left = 'auto'; logoBox.style.transform = 'none';
             } else if (pos === 'center') {
                 logoBox.style.top = '50%'; logoBox.style.right = '50%'; logoBox.style.left = 'auto'; logoBox.style.transform = 'translate(50%, -50%)';
             } else if (pos === 'top-left') {
-                logoBox.style.top = '10px'; logoBox.style.left = '12px'; logoBox.style.right = 'auto'; logoBox.style.transform = 'none';
+                logoBox.style.top = '15px'; logoBox.style.left = '16px'; logoBox.style.right = 'auto'; logoBox.style.transform = 'none';
             }
         }
 

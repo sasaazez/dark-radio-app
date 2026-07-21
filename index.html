@@ -37,7 +37,7 @@
             box-sizing: border-box;
         }
 
-        /* إطار عرض الكتاب الرسمي */
+        /* إطار عرض الصورة أو الكتاب الرسمي */
         .image-area {
             position: absolute;
             width: 86%;
@@ -79,14 +79,14 @@
         }
 
         .logo-sub-text {
-            color: #ffffff; /* أبيض حسب الطلب */
+            color: #ffffff;
             font-size: 10px;
             font-weight: bold;
             margin: 2px 0 0 0;
             letter-spacing: 1px;
         }
 
-        /* شريط العنوان الاحترافي (خلفية شفافة تماماً) */
+        /* شريط العنوان الاحترافي (خلفية معتمة أصلية مع خط أحمر سفلي) */
         .title-box-container {
             position: absolute;
             bottom: 42px;
@@ -99,7 +99,9 @@
             align-items: flex-end;
             text-align: right;
             border-radius: 10px;
-            background: transparent; /* خلفية شفافة تماماً */
+            background: rgba(15, 23, 42, 0.94);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
         }
 
         .badge-date-row {
@@ -121,11 +123,10 @@
         }
 
         .date-text {
-            color: #ffffff;
+            color: #ef4444; /* لون أحمر حسب طلبك */
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .title-text {
@@ -137,7 +138,6 @@
             width: 100%;
             border-bottom: 2px solid #ef4444;
             padding-bottom: 4px;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.9); /* لضمان وضوح النص فوق الخلفية */
         }
 
         /* شريط الحسابات السفلي */
@@ -300,16 +300,16 @@
     <!-- شاشة المعاينة الحية -->
     <div class="preview-container" id="capture-area">
         
-        <!-- إطار الكتاب الرسمي -->
+        <!-- إطار الصورة أو الكتاب الرسمي -->
         <div class="image-area" id="bg-image-layer"></div>
 
-        <!-- لوكو إذاعة دارك (أبيض بالكامل مع التردد) -->
+        <!-- لوكو إذاعة دارك -->
         <div class="top-overlay">
             <p class="logo-main-text">إذاعة دارك</p>
             <p class="logo-sub-text">FM 94.3</p>
         </div>
         
-        <!-- شريط العنوان (خلفية شفافة تماماً) -->
+        <!-- شريط العنوان (خلفية معتمة وتاريخ أحمر) -->
         <div class="title-box-container">
             <div class="badge-date-row">
                 <span class="urgent-badge" id="display-urgent">عاجل</span>
@@ -357,10 +357,10 @@
             <span id="font-size-val" class="slider-val">16px</span>
         </div>
 
-        <div class="section-title">إعدادات حجم الكتاب الرسمي داخل الإطار</div>
+        <div class="section-title">إعدادات حجم الصورة داخل الإطار</div>
         <div class="btn-row">
             <input type="file" id="image-loader" accept="image/*" style="display:none;" onchange="loadImage(event)">
-            <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة الكتاب</button>
+            <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة</button>
             <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف الصورة</button>
         </div>
         

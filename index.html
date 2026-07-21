@@ -49,43 +49,20 @@
             top: 0;
             left: 0;
             z-index: 1;
-            transition: padding 0.3s ease;
+            transition: all 0.3s ease;
         }
 
-        /* وضع احتوائي مخصص للكتب الرسمية لضمان عدم تداخلها مع النصوص */
+        /* وضع الإطار للكتب الرسمية لكي تظهر كاملة وواضحة بدون قص أو تداخل */
         .preview-container.framed .image-area {
             width: 82% !important;
-            height: 65% !important;
+            height: 62% !important;
             top: 15% !important;
             left: 9% !important;
             right: 9% !important;
             background-size: contain !important;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            background-color: #ffffff; /* خلفية بيضاء لتوضيح الكتاب الرسمي إذا كان شفافاً */
-        }
-
-        /* اللوكو العلوي */
-        .top-overlay {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            z-index: 4;
-        }
-
-        .logo-img {
-            width: 85px;
-            height: 45px;
-            object-fit: contain;
-            display: block;
-            background: #111827;
-            padding: 4px 8px;
-            border-radius: 6px;
-            border: 0.5px solid rgba(255,255,255,0.25);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            background-color: #ffffff; /* خلفية بيضاء لتوضيح الكتاب الرسمي */
         }
 
         /* شريط العنوان الاحترافي */
@@ -299,16 +276,11 @@
 
     <h2>محرر قوالب إذاعة دارك</h2>
 
-    <!-- شاشة المعاينة الحية -->
+    <!-- شاشة المعاينة الحية (خالية تماماً من اللوكو العلوي وبنفس تفاصيل صورتك) -->
     <div class="preview-container" id="capture-area">
         
-        <!-- صورة الخلفية -->
+        <!-- صورة الخلفية / الكتاب الرسمي -->
         <div class="image-area" id="bg-image-layer"></div>
-
-        <!-- اللوكو العلوي -->
-        <div class="top-overlay">
-            <img class="logo-img" src="Logo.png" alt="logo">
-        </div>
         
         <!-- شريط العنوان -->
         <div class="title-box-container">

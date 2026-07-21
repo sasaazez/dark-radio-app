@@ -37,7 +37,7 @@
             box-sizing: border-box;
         }
 
-        /* إطار عرض الكتاب الرسمي (تم تعديل المقاسات ليظهر الكتاب بالكامل بوضوح) */
+        /* إطار عرض الكتاب الرسمي */
         .image-area {
             position: absolute;
             width: 86%;
@@ -55,7 +55,7 @@
             transition: all 0.3s ease;
         }
 
-        /* لوكو إذاعة دارك البرمجي الدقيق (لا يحتاج لأي صورة خارجية) */
+        /* لوكو إذاعة دارك (أبيض بالكامل مع التردد) */
         .top-overlay {
             position: absolute;
             top: 12px;
@@ -79,14 +79,14 @@
         }
 
         .logo-sub-text {
-            color: #38bdf8;
+            color: #ffffff; /* أبيض حسب الطلب */
             font-size: 10px;
             font-weight: bold;
             margin: 2px 0 0 0;
             letter-spacing: 1px;
         }
 
-        /* شريط العنوان الاحترافي السفلي */
+        /* شريط العنوان الاحترافي (خلفية شفافة تماماً) */
         .title-box-container {
             position: absolute;
             bottom: 42px;
@@ -99,9 +99,7 @@
             align-items: flex-end;
             text-align: right;
             border-radius: 10px;
-            background: rgba(15, 23, 42, 0.94);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+            background: transparent; /* خلفية شفافة تماماً */
         }
 
         .badge-date-row {
@@ -123,10 +121,11 @@
         }
 
         .date-text {
-            color: #ef4444;
+            color: #ffffff;
             font-size: 11px;
             font-weight: bold;
             letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .title-text {
@@ -138,6 +137,7 @@
             width: 100%;
             border-bottom: 2px solid #ef4444;
             padding-bottom: 4px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9); /* لضمان وضوح النص فوق الخلفية */
         }
 
         /* شريط الحسابات السفلي */
@@ -300,16 +300,16 @@
     <!-- شاشة المعاينة الحية -->
     <div class="preview-container" id="capture-area">
         
-        <!-- إطار الكتاب الرسمي (يظهر كاملاً بوضوح تام) -->
+        <!-- إطار الكتاب الرسمي -->
         <div class="image-area" id="bg-image-layer"></div>
 
-        <!-- لوكو إذاعة دارك (تصميم برمجي جاهز يظهر تماماً مثل صورتك بدون أخطاء) -->
+        <!-- لوكو إذاعة دارك (أبيض بالكامل مع التردد) -->
         <div class="top-overlay">
             <p class="logo-main-text">إذاعة دارك</p>
             <p class="logo-sub-text">FM 94.3</p>
         </div>
         
-        <!-- شريط العنوان -->
+        <!-- شريط العنوان (خلفية شفافة تماماً) -->
         <div class="title-box-container">
             <div class="badge-date-row">
                 <span class="urgent-badge" id="display-urgent">عاجل</span>
@@ -335,13 +335,13 @@
     <!-- لوحة التحكم السفلى -->
     <div class="control-panel">
 
-        <div class="section-title">نوع الخبر</div>
+        <div class="section-title">نوع الخبر (مع خيار الإخفاء / الإظهار)</div>
         <div class="types-grid">
             <button class="type-btn active" onclick="setNewsType('عاجل', '#ef4444', this)">عاجل</button>
             <button class="type-btn" onclick="setNewsType('رياضة', '#10b981', this)">رياضة</button>
             <button class="type-btn" onclick="setNewsType('مناشدة', '#f97316', this)">مناشدة</button>
             <button class="type-btn" onclick="setNewsType('ترفيه', '#a855f7', this)">ترفيه</button>
-            <button class="type-btn" onclick="setNewsType('تقنية', '#06b6d4', this)">تقنية</button>
+            <button class="type-btn" onclick="toggleBadgeVisibility()" id="toggle-badge-btn" style="background-color: #334155; border-color: #64748b;">إخفاء الشارة</button>
         </div>
 
         <div class="section-title">محتوى الخبر</div>
@@ -363,7 +363,7 @@
             <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة الكتاب</button>
             <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف الصورة</button>
         </div>
-        <!-- شريط تحكم دقيق لتكبير وتصغير محتوى الكتاب داخل الإطار -->
+        
         <div class="slider-container">
             <input type="range" id="image-size-slider" min="40" max="150" value="100" oninput="changeImageSize()">
             <span id="image-size-val" class="slider-val">100%</span>
@@ -374,14 +374,34 @@
     </div>
 
     <script>
+        let isBadgeVisible = true;
+
         function setNewsType(text, color, btn) {
-            document.querySelectorAll('.type-btn').forEach(b => {
-                if(b.parentElement.classList.contains('types-grid')) b.classList.remove('active');
+            document.querySelectorAll('.types-grid .type-btn').forEach(b => {
+                if(b.id !== 'toggle-badge-btn') b.classList.remove('active');
             });
-            btn.classList.add('active');
+            if(btn) btn.classList.add('active');
             const badge = document.getElementById('display-urgent');
             badge.innerText = text;
             badge.style.backgroundColor = color;
+            badge.style.display = 'inline-block';
+            isBadgeVisible = true;
+            document.getElementById('toggle-badge-btn').innerText = "إخفاء الشارة";
+        }
+
+        function toggleBadgeVisibility() {
+            const badge = document.getElementById('display-urgent');
+            const toggleBtn = document.getElementById('toggle-badge-btn');
+            isBadgeVisible = !isBadgeVisible;
+            if (isBadgeVisible) {
+                badge.style.display = 'inline-block';
+                toggleBtn.innerText = "إخفاء الشارة";
+                toggleBtn.style.backgroundColor = "#334155";
+            } else {
+                badge.style.display = 'none';
+                toggleBtn.innerText = "إظهار الشارة";
+                toggleBtn.style.backgroundColor = "#0284c7";
+            }
         }
 
         function loadImage(event) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصمم القوالب الاحترافي</title>
+    <title>مصمم قوالب إذاعة دارك</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -37,49 +37,98 @@
             box-sizing: border-box;
         }
 
-        /* صورة الخلفية الكاملة */
+        /* صورة الخلفية */
         .image-area {
             width: 100%;
             height: 100%; 
             background-color: #0f172a; 
             background-repeat: no-repeat;
             background-position: center;
-            background-size: cover;
+            background-size: contain;
             position: absolute;
             top: 0;
             left: 0;
             z-index: 1;
+            transition: padding 0.3s ease;
         }
 
-        /* شريط العنوان */
+        /* وضع احتوائي مخصص للكتب الرسمية لضمان عدم تداخلها مع النصوص */
+        .preview-container.framed .image-area {
+            width: 82% !important;
+            height: 65% !important;
+            top: 15% !important;
+            left: 9% !important;
+            right: 9% !important;
+            background-size: contain !important;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            background-color: #ffffff; /* خلفية بيضاء لتوضيح الكتاب الرسمي إذا كان شفافاً */
+        }
+
+        /* اللوكو العلوي */
+        .top-overlay {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            z-index: 4;
+        }
+
+        .logo-img {
+            width: 85px;
+            height: 45px;
+            object-fit: contain;
+            display: block;
+            background: #111827;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 0.5px solid rgba(255,255,255,0.25);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* شريط العنوان الاحترافي */
         .title-box-container {
             position: absolute;
-            top: 45%;
-            left: 20px;
-            right: 20px;
-            transform: translateY(-50%);
-            padding: 20px;
+            bottom: 45px;
+            left: 15px;
+            right: 15px;
+            padding: 16px;
             z-index: 3;
             display: flex;
             flex-direction: column;
             align-items: flex-end;
             text-align: right;
             border-radius: 12px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            background: rgba(15, 23, 42, 0.92);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+
+        .badge-date-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 6px;
         }
 
         .urgent-badge {
             background-color: #ef4444;
             color: #ffffff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .date-text {
+            color: #ef4444;
             font-size: 12px;
             font-weight: bold;
-            padding: 3px 12px;
-            border-radius: 4px;
-            display: inline-block; 
-            margin-bottom: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            letter-spacing: 0.5px;
         }
 
         .title-text {
@@ -87,8 +136,10 @@
             font-weight: bold;
             color: #ffffff;
             margin: 0;
-            line-height: 1.5;
+            line-height: 1.4;
             width: 100%;
+            border-bottom: 2px solid #ef4444;
+            padding-bottom: 5px;
         }
 
         /* شريط الحسابات السفلي */
@@ -97,15 +148,15 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 38px;
+            height: 35px;
             padding: 0 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             z-index: 5;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.85);
             border-top: 0.5px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -118,13 +169,13 @@
         .social-icons-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             order: 1;
         }
 
         .social-item i {
             color: #ffffff !important;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         /* لوحة التحكم السفلى */
@@ -246,17 +297,25 @@
 </head>
 <body>
 
-    <h2>محرر القوالب الاحترافي</h2>
+    <h2>محرر قوالب إذاعة دارك</h2>
 
     <!-- شاشة المعاينة الحية -->
     <div class="preview-container" id="capture-area">
         
         <!-- صورة الخلفية -->
         <div class="image-area" id="bg-image-layer"></div>
+
+        <!-- اللوكو العلوي -->
+        <div class="top-overlay">
+            <img class="logo-img" src="Logo.png" alt="logo">
+        </div>
         
         <!-- شريط العنوان -->
-        <div class="title-box-container" id="title-box-pos">
-            <div class="urgent-badge" id="display-urgent">عاجل</div>
+        <div class="title-box-container">
+            <div class="badge-date-row">
+                <span class="urgent-badge" id="display-urgent">عاجل</span>
+                <span class="date-text" id="display-date">٢١ يوليو ٢٠٢٦</span>
+            </div>
             <p class="title-text" id="display-title">اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي</p>
         </div>
 
@@ -303,9 +362,7 @@
         <div class="btn-row">
             <input type="file" id="image-loader" accept="image/*" style="display:none;" onchange="loadImage(event)">
             <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة</button>
-            <!-- أزرار التحكم لعرض الكتاب الرسمي بالكامل أو ملء الإطار -->
-            <button class="type-btn" style="flex:1;" onclick="setImageFit('contain')">إظهار الكتاب كامل (بدون قص)</button>
-            <button class="type-btn" style="flex:1;" onclick="setImageFit('cover')">ملء الإطار</button>
+            <button class="type-btn" style="flex:1; background-color:#0284c7; border-color:#38bdf8;" onclick="toggleFrame()" id="frame-btn-text">إضافة إطار</button>
             <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف</button>
         </div>
         <div class="slider-container">
@@ -337,11 +394,17 @@
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        function setImageFit(fitType) {
-            const imageLayer = document.getElementById('bg-image-layer');
-            imageLayer.style.backgroundSize = fitType; // 'contain' لعرض الكتاب كاملاً بدون قص، 'cover' للملء الكامل
-            document.getElementById('image-size-slider').value = 100;
-            document.getElementById('image-size-val').innerText = '100%';
+        function toggleFrame() {
+            const container = document.getElementById('capture-area');
+            const btnText = document.getElementById('frame-btn-text');
+            container.classList.toggle('framed');
+            if(container.classList.contains('framed')) {
+                btnText.innerText = "إلغاء الإطار";
+                btnText.style.backgroundColor = "#334155";
+            } else {
+                btnText.innerText = "إضافة إطار";
+                btnText.style.backgroundColor = "#0284c7";
+            }
         }
 
         function removeImage() {
@@ -389,7 +452,7 @@
             const captureArea = document.getElementById('capture-area');
             html2canvas(captureArea, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `news_post_${Date.now()}.png`;
+                link.download = `darek_radio_post_${Date.now()}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });

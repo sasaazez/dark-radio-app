@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصمم قوالب إذاعة دارك 94.3 FM</title>
+    <title>مصمم قوالب إذاعة دارك</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;700&family=Changa:wght@400;700&family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Cairo', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #0f172a;
             color: #ffffff;
             display: flex;
@@ -18,12 +17,13 @@
             padding: 20px;
             margin: 0;
         }
+
         h2 {
             margin-bottom: 20px;
-            color: #dc2626;
-            font-size: 20px;
-            text-align: center;
+            color: #38bdf8;
         }
+
+        /* حاوية المعاينة الأساسية */
         .preview-container {
             width: 420px;
             height: 580px;
@@ -36,178 +36,124 @@
             flex-direction: column;
             box-sizing: border-box;
         }
+
+        /* صورة الخلفية الكاملة */
         .image-area {
             width: 100%;
-            flex-grow: 1; 
+            height: 100%; 
             background-color: #0f172a; 
             background-repeat: no-repeat;
-            background-size: 100% 100%; 
             background-position: center;
-            position: relative;
-            box-sizing: border-box;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
+
+        /* الهيدر العلوي */
         .top-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            padding: 12px 15px;
-            z-index: 3;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-        }
-        .radio-main-title {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: bold;
-            background: rgba(30, 27, 75, 0.9);
-            padding: 5px 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
-            margin: 0;
-            text-align: right;
-            line-height: 1.2;
-            display: flex;
-            flex-direction: column;
-        }
-        .radio-sub-freq {
-            color: #ffffff;
-            font-size: 10px;
-            font-weight: normal;
-            opacity: 0.9;
-        }
-        .unified-color {
-            color: #dc2626;
-        }
-        .date-badge-top {
-            background: rgba(30, 27, 75, 0.9);
-            color: #ffffff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
-        }
-
-        /* حاوية صندوق الخبر المنتصف مع الإطار الأحمر الجانبي والعلوي والسفلي */
-        .news-card-box {
-            position: absolute;
-            top: 75px;
-            left: 20px;
-            right: 20px;
-            background-color: rgba(15, 23, 42, 0.92);
-            border-radius: 12px;
-            padding: 20px;
-            box-sizing: border-box;
-            z-index: 4;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            
-            /* الإطار الأحمر على الجانب الأيمن والأعلى والأسفل كما في الصورة المطلوبة */
-            border-top: 3px solid #dc2626;
-            border-right: 3px solid #dc2626;
-            border-bottom: 1px solid rgba(220, 38, 38, 0.4);
-            border-left: none;
-        }
-
-        .card-header-row {
-            display: flex;
             justify-content: flex-end;
             align-items: center;
+            padding: 10px 15px;
+            z-index: 4;
+            background: linear-gradient(rgba(0,0,0,0.5), transparent);
         }
 
-        /* بادج نوع الخبر داخل الصندوق */
-        .news-badge-box {
-            background-color: #dc2626;
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: bold;
-            padding: 4px 18px;
+        .logo-img {
+            width: 95px;
+            height: 50px;
+            object-fit: contain;
+            display: block;
+            background: #000000;
+            padding: 4px 8px;
             border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-            letter-spacing: 0.5px;
-            display: inline-block;
+            border: 0.5px solid rgba(255,255,255,0.3);
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
         }
 
-        .card-text-container {
+        /* شريط العنوان */
+        .title-box-container {
+            position: absolute;
+            top: 45%;
+            left: 20px;
+            right: 20px;
+            transform: translateY(-50%);
+            padding: 20px;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
             text-align: right;
-            padding: 5px 0;
+            border-radius: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
         }
+
+        .urgent-badge {
+            background-color: #ef4444;
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 12px;
+            border-radius: 4px;
+            display: inline-block; 
+            margin-bottom: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
         .title-text {
-            font-size: 15px; 
+            font-size: 18px; 
             font-weight: bold;
             color: #ffffff;
             margin: 0;
             line-height: 1.5;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-            font-family: 'Cairo', sans-serif;
+            width: 100%;
         }
 
-        /* خط فاصل أحمر رفيع فوق التاريخ داخل الصندوق */
-        .card-footer-row {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            border-top: 1.5px solid #dc2626;
-            padding-top: 10px;
-            margin-top: 5px;
-        }
-        .card-date-text {
-            color: #94a3b8;
-            font-size: 11px;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        /* الشريط السفلي الثابت لمواقع التواصل */
-        .bottom-content-area {
+        /* شريط الحسابات السفلي */
+        .social-footer {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 9%; 
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.6) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            height: 38px;
             padding: 0 15px;
-            box-sizing: border-box;
-            z-index: 3;
-            border-top: 2px solid #dc2626;
-        }
-        .social-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
-            color: #ffffff;
+            font-size: 12px;
             font-weight: bold;
-            direction: rtl;
+            z-index: 5;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 0.5px solid rgba(255, 255, 255, 0.2);
         }
+
+        .brand-handle {
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            order: 2;
+        }
+
         .social-icons-group {
             display: flex;
-            gap: 14px;
             align-items: center;
-            direction: ltr;
+            gap: 12px;
+            order: 1;
         }
-        .social-icons-group i {
-            color: #ffffff;
+
+        .social-item i {
+            color: #ffffff !important;
             font-size: 13px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.95);
         }
-        .follow-text {
-            font-weight: bold;
-            color: #ffffff;
-            font-size: 11px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.95);
-        }
-        
+
+        /* لوحة التحكم السفلى */
         .control-panel {
             width: 420px;
             background-color: #1e293b;
@@ -216,12 +162,16 @@
             margin-top: 20px;
             box-sizing: border-box;
         }
+
         .section-title {
             font-size: 13px;
             color: #94a3b8;
-            margin-bottom: 6px;
-            margin-top: 12px;
+            margin-bottom: 8px;
+            margin-top: 15px;
         }
+
+        .section-title:first-child { margin-top: 0; }
+
         .input-custom, .select-custom {
             width: 100%;
             background-color: #0f172a;
@@ -233,64 +183,80 @@
             font-family: inherit;
             font-size: 13px;
         }
-        .slider-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #0f172a;
-            padding: 8px 10px;
-            border-radius: 8px;
-            border: 1px solid #334155;
-        }
-        .slider-container input { flex: 1; cursor: pointer; }
-        .slider-val { font-size: 12px; color: #94a3b8; min-width: 40px; text-align: center; }
-        textarea {
-            width: 100%;
-            height: 75px;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            padding: 10px;
-            box-sizing: border-box;
-            resize: none;
-            font-family: inherit;
-            font-size: 13px;
-            margin-bottom: 10px;
-        }
-        
-        /* تنسيق أزرار أنواع الخبر في لوحة التحكم */
-        .news-types-grid {
+
+        .types-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
             gap: 6px;
             margin-bottom: 5px;
         }
-        .news-btn {
-            padding: 8px 4px;
-            border: none;
-            border-radius: 8px;
+
+        .type-btn {
+            background-color: #0f172a;
+            border: 1px solid #334155;
             color: #ffffff;
-            font-weight: bold;
+            padding: 8px 4px;
             font-size: 12px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: center;
+            font-weight: bold;
             transition: 0.2s;
-            font-family: 'Cairo', sans-serif;
         }
-        .news-btn.active {
-            box-shadow: 0 0 0 2px #ffffff;
-            transform: scale(1.05);
+
+        .type-btn.active {
+            border-color: #38bdf8;
+            background-color: #0284c7;
         }
-        .btn-urgent { background-color: #dc2626; }
-        .btn-sport { background-color: #16a34a; }
-        .btn-appeal { background-color: #ea580c; }
-        .btn-art { background-color: #9333ea; }
-        .btn-tech { background-color: #0891b2; }
-        .btn-none { background-color: #475569; font-size: 11px; }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #0f172a;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+        }
+
+        .slider-container input { flex: 1; cursor: pointer; }
+        .slider-val { font-size: 13px; color: #94a3b8; min-width: 45px; text-align: center; }
+
+        textarea {
+            width: 100%;
+            height: 70px;
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            padding: 12px;
+            box-sizing: border-box;
+            resize: none;
+            font-family: inherit;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .btn-action {
+            background-color: #334155;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-action:hover { background-color: #475569; }
 
         .btn-download {
-            background-color: #dc2626;
+            background-color: #22c55e; 
             color: #ffffff;
             width: 100%;
             font-size: 14px;
@@ -299,164 +265,145 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.2s;
-            margin-top: 10px;
+            margin-top: 5px;
         }
-        .btn-download:hover {
-            background-color: #b91c1c;
+
+        .btn-share {
+            background-color: #a855f7; 
+            color: #ffffff;
+            width: 100%;
+            font-size: 14px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
         }
     </style>
 </head>
 <body>
 
-    <h2>محرر قوالب <span class="unified-color">إذاعة دارك 94.3 FM</span></h2>
+    <h2>محرر قوالب إذاعة دارك</h2>
 
+    <!-- شاشة المعاينة الحية -->
     <div class="preview-container" id="capture-area">
-        <div class="image-area" id="bg-image-layer">
-            <div class="top-overlay">
-                <div class="radio-main-title">
-                    إذاعة دارك
-                    <span class="radio-sub-freq">94.3 FM</span>
-                </div>
-                <div class="date-badge-top" id="display-date-top"></div>
-            </div>
-            
-            <!-- صندوق الخبر المنتصف مع الإطار الأحمر تماماً مثل الصورة المطلوبة -->
-            <div class="news-card-box" id="news-card">
-                <div class="card-header-row">
-                    <div class="news-badge-box" id="floating-badge">عاجل</div>
-                </div>
-                <div class="card-text-container">
-                    <p class="title-text" id="display-title">اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي...</p>
-                </div>
-                <div class="card-footer-row">
-                    <span class="card-date-text" id="display-date-card"></span>
-                </div>
-            </div>
-            
-            <!-- الشريط السفلي الثابت لمواقع التواصل -->
-            <div class="bottom-content-area">
-                <div class="social-footer">
-                    <span class="follow-text">تابع إذاعة دارك</span>
-                    <div class="social-icons-group">
-                        <i class="fab fa-youtube"></i>
-                        <i class="fab fa-telegram"></i>
-                        <i class="fa-solid fa-x-twitter"></i>
-                        <i class="fab fa-tiktok"></i>
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-facebook"></i>
-                    </div>
-                </div>
+        
+        <!-- صورة الخلفية -->
+        <div class="image-area" id="bg-image-layer"></div>
+
+        <!-- الهيدر العلوي -->
+        <div class="top-overlay">
+            <img class="logo-img" src="Logo.png" alt="logo">
+        </div>
+        
+        <!-- شريط العنوان -->
+        <div class="title-box-container" id="title-box-pos">
+            <div class="urgent-badge" id="display-urgent">عاجل</div>
+            <p class="title-text" id="display-title">اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي</p>
+        </div>
+
+        <!-- شريط الحسابات السفلي -->
+        <div class="social-footer">
+            <span class="brand-handle">تابع إذاعة دارك</span>
+            <div class="social-icons-group">
+                <div class="social-item"><i class="fab fa-facebook-f"></i></div>
+                <div class="social-item"><i class="fab fa-instagram"></i></div>
+                <div class="social-item"><i class="fab fa-tiktok"></i></div>
+                <div class="social-item"><i class="fa-solid fa-x"></i></div>
+                <div class="social-item"><i class="fab fa-telegram-plane"></i></div>
+                <div class="social-item"><i class="fab fa-youtube"></i></div>
             </div>
         </div>
     </div>
 
+    <!-- لوحة التحكم السفلى -->
     <div class="control-panel">
-        <div class="section-title">نوع الخبر (تصنيف البادج)</div>
-        <div class="news-types-grid">
-            <button class="news-btn btn-urgent active" onclick="setNewsType('عاجل', '#dc2626', this)">عاجل</button>
-            <button class="news-btn btn-sport" onclick="setNewsType('رياضة', '#16a34a', this)">رياضة</button>
-            <button class="news-btn btn-appeal" onclick="setNewsType('مناشدة', '#ea580c', this)">مناشدة</button>
-            <button class="news-btn btn-art" onclick="setNewsType('ترفيه', '#9333ea', this)">ترفيه</button>
-            <button class="news-btn btn-tech" onclick="setNewsType('تقنية', '#0891b2', this)">تقنية</button>
+
+        <div class="section-title">نوع الخبر</div>
+        <div class="types-grid">
+            <button class="type-btn active" onclick="setNewsType('عاجل', '#ef4444', this)">عاجل</button>
+            <button class="type-btn" onclick="setNewsType('رياضة', '#10b981', this)">رياضة</button>
+            <button class="type-btn" onclick="setNewsType('مناشدة', '#f97316', this)">مناشدة</button>
+            <button class="type-btn" onclick="setNewsType('ترفيه', '#a855f7', this)">ترفيه</button>
+            <button class="type-btn" onclick="setNewsType('تقنية', '#06b6d4', this)">تقنية</button>
         </div>
-        <button class="news-btn btn-none" style="width: 100%; margin-top: 4px;" onclick="hideNewsType(this)">إخفاء التصنيف (بدون)</button>
 
-        <div class="section-title">إدراج صورة خلفية الخبر</div>
-        <input type="file" id="image-loader" class="input-custom" accept="image/*" onchange="loadImage(event)">
+        <div class="section-title">محتوى الخبر</div>
+        <div class="btn-row">
+            <button class="btn-action" onclick="quickPaste()">لصق سريع</button>
+            <button class="btn-action" onclick="toggleBrandEdit()">تبديل العلامة</button>
+        </div>
+        <textarea id="input-title" placeholder="دخل نص الخبر هنا..." oninput="updateTitle()">اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي</textarea>
 
-        <div class="section-title">طريقة احتواء الصورة داخل الإطار</div>
-        <select id="image-fit-select" class="select-custom" onchange="changeImageFit()">
-            <option value="100% 100%" selected>تعبئة الإطار بالكامل (مناسب للكتب الرسمية)</option>
-            <option value="cover">ملء مع الحفاظ على الأبعاد (Cover)</option>
-            <option value="contain">إظهار الصورة كاملة (Contain)</option>
-        </select>
+        <div class="section-title">حجم الخط</div>
+        <div class="slider-container">
+            <input type="range" id="font-size-slider" min="12" max="26" value="18" oninput="changeFontSize()">
+            <span id="font-size-val" class="slider-val">18px</span>
+        </div>
 
-        <div class="section-title">اختيار نوع خط العناوين</div>
-        <select id="font-family-select" class="select-custom" onchange="changeFontFamily()">
-            <option value="'Cairo', sans-serif">خط كايرو (Cairo)</option>
-            <option value="'Tajawal', sans-serif">خط تجوال (Tajawal)</option>
-            <option value="'Amiri', serif">خط أميري (Amiri)</option>
-            <option value="'Changa', sans-serif">خط شانغا (Changa)</option>
-        </select>
-
-        <div class="section-title">تحجيم زوم الصورة الخلفية</div>
+        <div class="section-title">إعدادات الصورة</div>
+        <div class="btn-row">
+            <input type="file" id="image-loader" accept="image/*" style="display:none;" onchange="loadImage(event)">
+            <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة</button>
+            <!-- أزرار التحكم الجديدة لعرض الكتاب الرسمي بالكامل أو ملء الإطار -->
+            <button class="type-btn" style="flex:1;" onclick="setImageFit('contain')">املأ الإطار (بدون قص)</button>
+            <button class="type-btn" style="flex:1;" onclick="setImageFit('cover')">احتواء الصورة</button>
+            <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف</button>
+        </div>
         <div class="slider-container">
             <input type="range" id="image-size-slider" min="50" max="200" value="100" oninput="changeImageSize()">
             <span id="image-size-val" class="slider-val">100%</span>
         </div>
 
-        <div class="section-title">حجم خط تفاصيل الخبر</div>
-        <div class="slider-container">
-            <input type="range" id="font-size-slider" min="12" max="20" value="15" oninput="changeFontSize()">
-            <span id="font-size-val" class="slider-val">15px</span>
-        </div>
-
-        <div class="section-title">محتوى تفاصيل الخبر</div>
-        <textarea id="input-title" placeholder="اكتب تفاصيل الخبر هنا..." oninput="updateTitle()">اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي...</textarea>
-
-        <button class="btn-download" onclick="downloadImage()">تصدير التصميم كصورة للنشر</button>
+        <button class="btn-download" onclick="downloadImage()"><i class="fa-solid fa-download"></i> حفظ في الاستوديو</button>
+        <button class="btn-share" onclick="downloadImage()"><i class="fa-solid fa-share-nodes"></i> مشاركة (فيسبوك / انستغرام)</button>
     </div>
 
     <script>
-        function setTodayDate() {
-            const today = new Date();
-            const day = String(today.getDate()).padStart(2, '0');
-            const month = String(today.getMonth() + 1).padStart(2, '0');
-            const year = today.getFullYear();
-            
-            const formattedDate = `${day}-${month}-${year}`;
-            document.getElementById('display-date-top').innerText = formattedDate;
-            document.getElementById('display-date-card').innerText = formattedDate;
-        }
-        window.onload = setTodayDate;
-
-        function setNewsType(text, color, btnElement) {
-            const badge = document.getElementById('floating-badge');
+        function setNewsType(text, color, btn) {
+            document.querySelectorAll('.type-btn').forEach(b => {
+                if(b.parentElement.classList.contains('types-grid')) b.classList.remove('active');
+            });
+            btn.classList.add('active');
+            const badge = document.getElementById('display-urgent');
             badge.innerText = text;
             badge.style.backgroundColor = color;
-            badge.parentElement.style.display = 'flex';
-
-            document.querySelectorAll('.news-btn').forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
-        }
-
-        function hideNewsType(btnElement) {
-            const badge = document.getElementById('floating-badge');
-            badge.parentElement.style.display = 'none';
-
-            document.querySelectorAll('.news-btn').forEach(b => b.classList.remove('active'));
-            btnElement.classList.add('active');
         }
 
         function loadImage(event) {
             const reader = new FileReader();
             reader.onload = function() {
-                document.getElementById('bg-image-layer').style.backgroundImage = `url(${reader.result})`;
+                const imageLayer = document.getElementById('bg-image-layer');
+                imageLayer.style.backgroundImage = `url(${reader.result})`;
             }
             reader.readAsDataURL(event.target.files[0]);
         }
 
-        function changeImageFit() {
-            const fitValue = document.getElementById('image-fit-select').value;
-            document.getElementById('bg-image-layer').style.backgroundSize = fitValue;
+        function setImageFit(fitType) {
+            const imageLayer = document.getElementById('bg-image-layer');
+            imageLayer.style.backgroundSize = fitType; // 'contain' يظهر الصورة/الكتاب بالكامل بدون قص، 'cover' يملأ الإطار
             document.getElementById('image-size-slider').value = 100;
             document.getElementById('image-size-val').innerText = '100%';
         }
 
-        function changeImageSize() {
-            const val = document.getElementById('image-size-slider').value;
-            document.getElementById('bg-image-layer').style.backgroundSize = val + '%';
-            document.getElementById('image-size-val').innerText = val + '%';
+        function removeImage() {
+            const imageLayer = document.getElementById('bg-image-layer');
+            imageLayer.style.backgroundImage = 'none';
+            document.getElementById('image-loader').value = '';
         }
 
-        function changeFontFamily() {
-            document.getElementById('display-title').style.fontFamily = document.getElementById('font-family-select').value;
+        function changeImageSize() {
+            const sliderValue = document.getElementById('image-size-slider').value;
+            const imageLayer = document.getElementById('bg-image-layer');
+            imageLayer.style.backgroundSize = sliderValue + '%';
+            document.getElementById('image-size-val').innerText = sliderValue + '%';
         }
 
         function updateTitle() {
-            const text = document.getElementById('input-title').value;
-            document.getElementById('display-title').innerText = text.trim() ? text : "اكتب تفاصيل الخبر هنا ليظهر بشكل احترافي...";
+            const titleInput = document.getElementById('input-title').value;
+            const displayTitle = document.getElementById('display-title');
+            displayTitle.innerText = titleInput.trim() === "" ? "اكتب تفاصيل الخبر هنا..." : titleInput;
         }
 
         function changeFontSize() {
@@ -465,10 +412,27 @@
             document.getElementById('font-size-val').innerText = val + 'px';
         }
 
+        async function quickPaste() {
+            try {
+                const text = await navigator.clipboard.readText();
+                document.getElementById('input-title').value = text;
+                updateTitle();
+            } catch (err) {
+                alert('تعذر الوصول للحافظة تلقائياً، يجوز اللصق يدوياً (Ctrl+V)');
+            }
+        }
+
+        function toggleBrandEdit() {
+            const handle = document.querySelector('.brand-handle');
+            const newName = prompt('أدخل اسم العلامة أو القناة الجديدة:', handle.innerText);
+            if(newName) handle.innerText = newName;
+        }
+
         function downloadImage() {
-            html2canvas(document.getElementById('capture-area'), { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
+            const captureArea = document.getElementById('capture-area');
+            html2canvas(captureArea, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `dark_radio_${Date.now()}.png`;
+                link.download = `darek_radio_post_${Date.now()}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });

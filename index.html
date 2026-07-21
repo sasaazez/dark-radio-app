@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مصمم قوالب إذاعة دارك</title>
+    <title>مصمم القوالب الاحترافي</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -49,32 +49,6 @@
             top: 0;
             left: 0;
             z-index: 1;
-        }
-
-        /* الهيدر العلوي */
-        .top-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 10px 15px;
-            z-index: 4;
-            background: linear-gradient(rgba(0,0,0,0.5), transparent);
-        }
-
-        .logo-img {
-            width: 95px;
-            height: 50px;
-            object-fit: contain;
-            display: block;
-            background: #000000;
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 0.5px solid rgba(255,255,255,0.3);
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
         }
 
         /* شريط العنوان */
@@ -171,18 +145,6 @@
         }
 
         .section-title:first-child { margin-top: 0; }
-
-        .input-custom, .select-custom {
-            width: 100%;
-            background-color: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            padding: 10px;
-            box-sizing: border-box;
-            font-family: inherit;
-            font-size: 13px;
-        }
 
         .types-grid {
             display: grid;
@@ -284,18 +246,13 @@
 </head>
 <body>
 
-    <h2>محرر قوالب إذاعة دارك</h2>
+    <h2>محرر القوالب الاحترافي</h2>
 
     <!-- شاشة المعاينة الحية -->
     <div class="preview-container" id="capture-area">
         
         <!-- صورة الخلفية -->
         <div class="image-area" id="bg-image-layer"></div>
-
-        <!-- الهيدر العلوي -->
-        <div class="top-overlay">
-            <img class="logo-img" src="Logo.png" alt="logo">
-        </div>
         
         <!-- شريط العنوان -->
         <div class="title-box-container" id="title-box-pos">
@@ -342,13 +299,13 @@
             <span id="font-size-val" class="slider-val">18px</span>
         </div>
 
-        <div class="section-title">إعدادات الصورة</div>
+        <div class="section-title">إعدادات الصورة والكتاب الرسمي</div>
         <div class="btn-row">
             <input type="file" id="image-loader" accept="image/*" style="display:none;" onchange="loadImage(event)">
             <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة</button>
-            <!-- أزرار التحكم الجديدة لعرض الكتاب الرسمي بالكامل أو ملء الإطار -->
-            <button class="type-btn" style="flex:1;" onclick="setImageFit('contain')">املأ الإطار (بدون قص)</button>
-            <button class="type-btn" style="flex:1;" onclick="setImageFit('cover')">احتواء الصورة</button>
+            <!-- أزرار التحكم لعرض الكتاب الرسمي بالكامل أو ملء الإطار -->
+            <button class="type-btn" style="flex:1;" onclick="setImageFit('contain')">إظهار الكتاب كامل (بدون قص)</button>
+            <button class="type-btn" style="flex:1;" onclick="setImageFit('cover')">ملء الإطار</button>
             <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف</button>
         </div>
         <div class="slider-container">
@@ -382,7 +339,7 @@
 
         function setImageFit(fitType) {
             const imageLayer = document.getElementById('bg-image-layer');
-            imageLayer.style.backgroundSize = fitType; // 'contain' يظهر الصورة/الكتاب بالكامل بدون قص، 'cover' يملأ الإطار
+            imageLayer.style.backgroundSize = fitType; // 'contain' لعرض الكتاب كاملاً بدون قص، 'cover' للملء الكامل
             document.getElementById('image-size-slider').value = 100;
             document.getElementById('image-size-val').innerText = '100%';
         }
@@ -418,7 +375,7 @@
                 document.getElementById('input-title').value = text;
                 updateTitle();
             } catch (err) {
-                alert('تعذر الوصول للحافظة تلقائياً، يجوز اللصق يدوياً (Ctrl+V)');
+                alert('تعذر الوصول للحافظة تلقائياً، يمكنك اللصق يدوياً (Ctrl+V)');
             }
         }
 
@@ -432,7 +389,7 @@
             const captureArea = document.getElementById('capture-area');
             html2canvas(captureArea, { scale: 2, useCORS: true, backgroundColor: null }).then(canvas => {
                 const link = document.createElement('a');
-                link.download = `darek_radio_post_${Date.now()}.png`;
+                link.download = `news_post_${Date.now()}.png`;
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });

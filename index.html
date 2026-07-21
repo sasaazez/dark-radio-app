@@ -37,35 +37,45 @@
             box-sizing: border-box;
         }
 
-        /* صورة الخلفية */
+        /* إطار عرض الكتاب الرسمي (يظهر كاملاً داخل مساحة آمنة لا يغطيها النص) */
         .image-area {
-            width: 100%;
-            height: 100%; 
-            background-color: #0f172a; 
+            position: absolute;
+            width: 82%;
+            height: 60%;
+            top: 15%;
+            left: 9%;
+            right: 9%;
+            background-color: #ffffff; 
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
-            position: absolute;
-            top: 0;
-            left: 0;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
             z-index: 1;
             transition: all 0.3s ease;
         }
 
-        /* وضع الإطار للكتب الرسمية لكي تظهر كاملة وواضحة بدون قص أو تداخل */
-        .preview-container.framed .image-area {
-            width: 82% !important;
-            height: 62% !important;
-            top: 15% !important;
-            left: 9% !important;
-            right: 9% !important;
-            background-size: contain !important;
-            border-radius: 8px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            background-color: #ffffff; /* خلفية بيضاء لتوضيح الكتاب الرسمي */
+        /* لوكو إذاعة دارك في الزاوية العلوية اليمنى */
+        .top-overlay {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 4;
         }
 
-        /* شريط العنوان الاحترافي */
+        .logo-img {
+            width: 95px;
+            height: 48px;
+            object-fit: contain;
+            display: block;
+            background: #111827;
+            padding: 4px 8px;
+            border-radius: 6px;
+            border: 0.5px solid rgba(255,255,255,0.25);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        /* شريط العنوان الاحترافي السفلي */
         .title-box-container {
             position: absolute;
             bottom: 45px;
@@ -276,11 +286,16 @@
 
     <h2>محرر قوالب إذاعة دارك</h2>
 
-    <!-- شاشة المعاينة الحية (خالية تماماً من اللوكو العلوي وبنفس تفاصيل صورتك) -->
+    <!-- شاشة المعاينة الحية مع لوكو الإذاعة وإطار الكتاب الرسمي المتكامل -->
     <div class="preview-container" id="capture-area">
         
-        <!-- صورة الخلفية / الكتاب الرسمي -->
+        <!-- إطار الكتاب الرسمي -->
         <div class="image-area" id="bg-image-layer"></div>
+
+        <!-- اللوكو العلوي (إذاعة دارك) -->
+        <div class="top-overlay">
+            <img class="logo-img" src="Logo.png" alt="logo">
+        </div>
         
         <!-- شريط العنوان -->
         <div class="title-box-container">
@@ -330,15 +345,15 @@
             <span id="font-size-val" class="slider-val">18px</span>
         </div>
 
-        <div class="section-title">إعدادات الصورة والكتاب الرسمي</div>
+        <div class="section-title">إعدادات حجم الكتاب الرسمي داخل الإطار</div>
         <div class="btn-row">
             <input type="file" id="image-loader" accept="image/*" style="display:none;" onchange="loadImage(event)">
-            <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة</button>
-            <button class="type-btn" style="flex:1; background-color:#0284c7; border-color:#38bdf8;" onclick="toggleFrame()" id="frame-btn-text">إضافة إطار</button>
-            <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف</button>
+            <button class="type-btn" style="flex:1;" onclick="document.getElementById('image-loader').click()">اختر صورة الكتاب</button>
+            <button class="type-btn" style="background-color:#7f1d1d; border-color:#991b1b;" onclick="removeImage()">حذف الصورة</button>
         </div>
+        <!-- شريط تحكم دقيق لتكبير وتصغير محتوى الكتاب داخل الإطار -->
         <div class="slider-container">
-            <input type="range" id="image-size-slider" min="50" max="200" value="100" oninput="changeImageSize()">
+            <input type="range" id="image-size-slider" min="50" max="150" value="100" oninput="changeImageSize()">
             <span id="image-size-val" class="slider-val">100%</span>
         </div>
 
@@ -364,19 +379,6 @@
                 imageLayer.style.backgroundImage = `url(${reader.result})`;
             }
             reader.readAsDataURL(event.target.files[0]);
-        }
-
-        function toggleFrame() {
-            const container = document.getElementById('capture-area');
-            const btnText = document.getElementById('frame-btn-text');
-            container.classList.toggle('framed');
-            if(container.classList.contains('framed')) {
-                btnText.innerText = "إلغاء الإطار";
-                btnText.style.backgroundColor = "#334155";
-            } else {
-                btnText.innerText = "إضافة إطار";
-                btnText.style.backgroundColor = "#0284c7";
-            }
         }
 
         function removeImage() {
